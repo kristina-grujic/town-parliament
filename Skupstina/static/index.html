@@ -94,6 +94,14 @@
 				<div class="header-content">
 					<div class="c-container">
 						<div class="header-content-inner">
+							<div class="header-tools" style="position:fixed; right:30px;">
+								<div ng-if="isLoggedIn()">
+									<a ng-controller="LoginCtrl" href="" ng-click="logout()"><span ><p class="logout-button">Odjavite se</p> </span></a>
+								</div>
+								<div ng-if="!isLoggedIn()" class="header-login">
+									<a href="#/login" class="login" title="Prijava">Prijava</a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -115,6 +123,20 @@
 
 		</div>
 
+		<h3 ng-if="!isLoggedIn()" style="position:absolute; top:30px; left: 30px; font-size:18px; background-color: #555; z-index:10; color: white; padding: 5px;">
+			Niste ulogovani
+		</h3>
+		<h3 ng-if="isLoggedIn() && getCurrentUserRole()=='ALDERMAN'" style="position:absolute; top:30px; left: 30px; font-size:18px; background-color: #555; z-index:10; color: white; padding: 5px;">
+			Ulogovani ste kao: Odbornik
+		</h3>
+		<h3 ng-if="isLoggedIn() && getCurrentUserRole()=='PRESIDENT'" style="position:absolute; top:30px; left: 30px; font-size:18px; background-color: #555; z-index:10; color: white; padding: 5px;">
+			Ulogovani ste kao: Predsednik skupstine
+		</h3>
+		<h3 ng-if="isLoggedIn() && getCurrentUserRole()=='ADMIN'" style="position:absolute; top:30px; left: 30px; font-size:18px; background-color: #555; z-index:10; color: white; padding: 5px;">
+			Ulogovani ste kao: Administrator
+		</h3>
+		<!-- End HEADER BG -->
+
 		<!-- CORE -->
 		<div id="core" class="post-4900 post type-post status-publish format-standard hentry category-aktivnosti-skupstine-grada category-vesti">
 			<div class="c-container">
@@ -133,6 +155,16 @@
 
 						<div class="side-menu m-left-side m-show-submenu">
 
+							<!-- MAIN MENU -->
+							<nav class="main-menu">
+
+								<ul id="menu-novi-gornji-1" class="menu-items clearfix">
+
+								<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-808"><a href="#/">Pocetna</a></li>
+								<li ng-if="isLoggedIn() && getCurrentUserRole()&&getCurrentUserRole()!='ALDERMAN'" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-808"><a href="#/add/new/minister">Dodati poslanika</a></li>
+								</ul>
+							</nav>
+							<!-- End MAIN MENU -->
 
 						</div>
 
@@ -156,6 +188,15 @@
 	    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
 	    <script src="bower_components/ng-storage/ngStorage.js"></script>
 	    <!-- End bower components -->
+
+		<!--  JS -->
+		<script src="scripts/app.js"></script>
+		<script src="scripts/users/user-ctrl.js"></script>
+		<script src="scripts/users/user-add-ctrl.js"></script>
+		<script src="scripts/users/authentication.js"></script>
+		<script src="scripts/users/auth-service.js"></script>
+
+		<!--  End JS -->
 
 	</body>
 </html>
