@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.parlament.gov.rs/amandmani"
+    xmlns:skup="http://www.parlament.gov.rs/amandmani">
+    <xs:element name="dokument">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="naslov" type="xs:string"/>
+                <xs:element ref="skup:sluzbeniList"/>
+                <xs:element maxOccurs="unbounded" ref="skup:propisi"/>
+                <xs:element minOccurs="0" ref="skup:sadrzaj" maxOccurs="1"/>
+            </xs:sequence>
+            <xs:attribute ref="skup:id"/>
+            <xs:attribute ref="skup:Korisnik"/>
+            <xs:attribute ref="skup:odobreno"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="glava">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="skup:podaciGlave"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="podnaslovGlave"
+                    type="xs:string"/>
+                <xs:element maxOccurs="unbounded" ref="skup:clan"/>
+            </xs:sequence>
+            <xs:attribute default="1" ref="skup:id"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="sluzbeniList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="broj_lista" type="xs:string"/>
+                <xs:element name="cena" type="xs:float"/>
+                <xs:element ref="skup:mestoDatum"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="mestoDatum">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="mesto" type="xs:string"/>
+                <xs:element name="datum" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="propisi">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="preambula" type="xs:string"/>
+                <xs:element name="naziv_propisa" type="xs:string"/>
+                <xs:element name="uvodniDeo" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element ref="skup:glava"/>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="glavniDeo" maxOccurs="unbounded" minOccurs="1">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element ref="skup:glava"/>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="zavrsniDeo" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="skup:glava"/>
+                            <xs:element name="potpis_presednika" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="dopunaZakona">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="skup:glava"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute ref="skup:id"/>
+            <xs:attribute ref="skup:Korisnik"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="clan">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="skup:podaciClana"/>
+                <xs:element name="opis" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute ref="skup:id"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="podaciClana">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="naslovClana" type="xs:string"/>
+                <xs:element name="brojClana" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="podaciGlave">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="naslovGlave" type="xs:string"/>
+                <xs:element name="broj_glave" type="xs:string" default="1"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="sadrzaj">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="broj_clana" type="xs:int"/>
+                <xs:element name="naziv_propisa" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute ref="skup:Korisnik"/>
+            <xs:attribute ref="skup:id"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:attribute name="id" type="xs:string"/>
+    <xs:attribute name="Korisnik" type="xs:string"/>
+    <xs:attribute default="false" name="odobreno" type="xs:boolean"/>
+</xs:schema>
