@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.parlament.gov.rs/amandmani"
+    xmlns:amand="http://www.parlament.gov.rs/amandmani">
+
+    <xs:element name="amandman">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="naslovAkta" type="xs:string"/>
+                <xs:element name="korisnik" type="xs:string"/>
+                <xs:element ref="amand:sluzbeniListAmandmana"/>
+                <xs:element name="dopunaZakonaAmandmana" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element ref="amand:glava"/>
+                        </xs:choice>
+                        <xs:attribute ref="amand:dopunaIzmena"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute ref="amand:idAkta"/>
+            <xs:attribute ref="amand:linkAkta"/>
+            <xs:attribute ref="amand:odobreno"/>
+            <xs:attribute ref="amand:dopunaIzmena"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="sluzbeniListAmandmana">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="brojListaAkta" type="xs:int"/>
+                <xs:element name="idAkta" type="xs:string"/>
+                <xs:element ref="amand:mestoDatum"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="glava">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="amand:podaciGlave"/>
+                <xs:element maxOccurs="unbounded" minOccurs="0" name="podnaslovGlave"
+                    type="xs:string"/>
+                <xs:element maxOccurs="unbounded" ref="amand:clan"/>
+            </xs:sequence>
+            <xs:attribute ref="amand:id"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="mestoDatum">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="mesto" type="xs:string"/>
+                <xs:element name="datum" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="podaciGlave">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="naslovGlave" type="xs:string"/>
+                <xs:element name="broj_glave" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="clan">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="amand:podaciClana"/>
+                <xs:element name="opis" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute ref="amand:id"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="podaciClana">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="naslovClana" type="xs:string"/>
+                <xs:element name="brojClana" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:attribute name="idAkta" type="xs:string"/>
+    <xs:attribute name="linkAkta" type="xs:string"/>
+    <xs:attribute name="odobreno" type="xs:boolean"/>
+    <xs:attribute name="dopunaIzmena" type="xs:boolean"/>
+    <xs:attribute name="id" type="xs:string"/>
+</xs:schema>
