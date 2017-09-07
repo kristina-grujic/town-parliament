@@ -29,6 +29,31 @@ angular
 	            controller: 'LoginCtrl',
 	            controllerAs: 'registrovan'
 	        })
+	        .when('/acts/:accept', {
+	            templateUrl: 'views/list.html',
+	            controller: 'ActCrtl',
+	            controllerAs: 'acceptAct'
+	        })
+	        .when('/add/new/act', {
+	            templateUrl: 'views/add.html',
+	            controller: 'AddActCtrl',
+	            controllerAs: 'addAct'
+	        })
+	        .when('/acts/read/proposed/:id', {
+	            templateUrl: 'views/readAct.html',
+	            controller: 'ReadCrtl',
+	            controllerAs: 'readCtrl'
+	        })
+	        .when('/acts/read/accepted/:id', {
+	            templateUrl: 'views/readAcceptAct.html',
+	            controller: 'ReadCrtl',
+	            controllerAs: 'readCtrl'
+	        })
+	        .when('/vote/:tip/:name/:id', {
+	            templateUrl: 'views/vote.html',
+	            controller: 'VoteCrtl',
+	            controllerAs: 'readCtrl'
+	        })
 	        .when('/add/new/minister', {
 	            templateUrl: 'views/addAlderman.html',
 	            controller: 'UserAddCtrl',
