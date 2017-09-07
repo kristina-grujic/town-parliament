@@ -1,0 +1,85 @@
+<div id="page-content">
+	<div class="c-content-box" style="width: 130%">
+		<div class="page-content-inner">
+			<div id="page-header">
+				<div class="page-title">
+					<h1>
+						<span ng-if="tip=='acts'">Akt</span >
+						<span ng-if="tip=='amandman'">Amandman</span>
+						{{name}}
+					</h1>
+				</div>
+			</div>
+
+			<div id="page-content">
+				<div class="bbp-username" style="margin: 2% 0 2% 0">
+					<label for="user_login">Osnovni podaci: </label>
+					<div style="border-top: 1px solid #555; height: 65px; padding: 1% 0 1% 3.9%">
+
+						<div style="float: left; width: 23%; height: 67px; margin: 0 1% 0 0;">
+							Broj poslanika:
+							<div style="float: left; text-align: center; font-size: 16px; color: #565656; background-color: #f0f0f0; width: 100%; height: 43px;  padding: 5% 0 0 0">
+								<p id="user_login">{{user}}</p>
+							</div>
+						</div>
+
+						<div style="float: left; width: 23%; height: 67px; margin: 0 1% 0 0;">
+							Broj glasova:
+							<div style="float: left; text-align: center; font-size: 16px; color: #565656; background-color: #f0f0f0; width: 100%; height: 43px;  padding: 5% 0 0 0">
+								<p id="user_login">{{vote}}</p>
+							</div>
+						</div>
+
+						<div style="float: left; width: 23%; height: 67px; margin: 0 1% 0 0;">
+							Procenat za:
+							<div style="float: left; text-align: center; font-size: 16px; color: #565656; background-color: #f0f0f0; width: 100%; height: 43px;  padding: 5% 0 0 0">
+								<p id="user_login">{{procenat.toFixed(2)}}%</p>
+							</div>
+						</div>
+
+						<div style="float: left; width: 23%; height: 67px; margin: 0 1% 0 0;">
+							Procenat protiv:
+							<div style="float: left; text-align: center; font-size: 16px; color: #565656; background-color: #f0f0f0; width: 100%; height: 43px;  padding: 5% 0 0 0">
+								<p id="user_login">{{izglasavanje.toFixed(2)}}%</p>
+							</div>
+						</div>
+
+
+
+					</div>
+					<div id="choicesDisplay"></div>
+
+					<div ng-if="getCurrentUserRole()&&getCurrentUserRole()!='PRESIDENT'" class="bbp-username" style="float:left; margin: 5% 0 0 0; float: none; text-align: center; font-size: 30px;">
+						<label for="user_login">Predlog je na usvajanju </label>
+					</div>
+
+					<div ng-if="message" style="width: 100%; margin: 1% 0 1% 0; text-align: center; color: #004d00; background: #99ff99; font-size: 50px; padding: 1% ; min-height: 50px; height: auto;">
+						<h4 ng-if="tip=='amandman'">Prihvacen amandman "{{name}}"!</h4>
+						<h4 ng-if="tip=='acts'">Prihvacen akt "{{name}}"!</h4>
+					</div>
+
+					<div class="bbp-username" style="float:left; margin: 5% 0 0 0; float: none; font-size: 30px;">
+
+						<div ng-if="getCurrentUserRole()&&getCurrentUserRole()=='PRESIDENT' && tip=='acts'" class="bbp-submit-wrapper" ng-if="isLoggedIn()">
+
+							<button ng-if="glasanje == true" type="submit" tabindex="104" name="user-submit" class="button submit user-submit" ng-click="acceptAct()">USVAJANJE</button>
+							<div ng-if="glasanje == false" style="display: inline-block;" type="submit" tabindex="104" name="user-submit" class="bbp-username">Nedovoljno za usvajanje</div> |
+							<button type="submit" tabindex="104" name="user-submit" class="button submit user-submit" ng-click="deleteAct()">ODBIJANJE</button>
+						</div>
+
+						<div ng-if="getCurrentUserRole()&&getCurrentUserRole()=='PRESIDENT' && tip=='amandman'" class="bbp-submit-wrapper" ng-if="isLoggedIn()">
+
+							<button ng-if="glasanje == true" type="submit" tabindex="104" name="user-submit" class="button submit user-submit" ng-click="acceptAmandman()">USVAJANJE</button>
+							<div ng-if="glasanje == false" style="display: inline-block;" type="submit" tabindex="104" name="user-submit" class="bbp-username">Nedovoljno za usvajanje</div> |
+							<button type="submit" tabindex="104" name="user-submit" class="button submit user-submit" ng-click="deleteAmandman()">ODBIJANJE</button>
+						</div>
+
+					</div>
+				</div>
+
+
+			</div>
+			<!-- PAGE CONTENT : end -->
+		</div>
+	</div>
+</div>
