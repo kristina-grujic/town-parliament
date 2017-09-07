@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:amandman xmlns="http://www.parlament.gov.rs/amandmani" xmlns:ns2="http://www.parlament.gov.rs/amandmani" ns2:idAkta="1" ns2:linkAkta="14180416130779056572" ns2:odobreno="false" ns2:dopunaIzmena="false">
+    <ns2:naslovAkta>ZAKON  O TERITORIJALNOJ ORGANIZACIJI REPUBLIKE SRBIJE</ns2:naslovAkta>
+    <ns2:korisnik>marko1</ns2:korisnik>
+    <ns2:sluzbeniListAmandmana>
+        <ns2:brojListaAkta>69</ns2:brojListaAkta>
+        <ns2:idAkta></ns2:idAkta>
+        <ns2:mestoDatum>
+            <ns2:mesto>Beograd</ns2:mesto>
+            <ns2:datum>20.12.2016</ns2:datum>
+        </ns2:mestoDatum>
+    </ns2:sluzbeniListAmandmana>
+    <ns2:dopunaZakonaAmandmana>
+        <ns2:glava ns2:id="1">
+            <ns2:podaciGlave>
+                <ns2:naslovGlave>Amandman koji ce biti odbijen</ns2:naslovGlave>
+                <ns2:broj_glave>1</ns2:broj_glave>
+            </ns2:podaciGlave>
+            <ns2:podnaslovGlave></ns2:podnaslovGlave>
+            <ns2:clan ns2:id="1">
+                <ns2:podaciClana>
+                    <ns2:naslovClana></ns2:naslovClana>
+                    <ns2:brojClana>1</ns2:brojClana>
+                </ns2:podaciClana>
+                <ns2:opis>odbijeni amandman se ne dodaje na akte</ns2:opis>
+            </ns2:clan>
+        </ns2:glava>
+    </ns2:dopunaZakonaAmandmana>
+</ns2:amandman>

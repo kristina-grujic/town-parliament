@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:dokument xmlns="http://www.parlament.gov.rs/amandmani" xmlns:ns2="http://www.parlament.gov.rs/amandmani" ns2:id="1" ns2:Korisnik="kristina" ns2:odobreno="false">
+    <ns2:naslov>ZAKON  O TERITORIJALNOJ ORGANIZACIJI REPUBLIKE SRBIJE</ns2:naslov>
+    <ns2:sluzbeniList>
+        <ns2:broj_lista>69</ns2:broj_lista>
+        <ns2:cena>300.0</ns2:cena>
+        <ns2:mestoDatum>
+            <ns2:mesto>Beograd</ns2:mesto>
+            <ns2:datum>20.12.2016</ns2:datum>
+        </ns2:mestoDatum>
+    </ns2:sluzbeniList>
+    <ns2:propisi ns2:id="1" ns2:Korisnik="">
+        <ns2:preambula></ns2:preambula>
+        <ns2:naziv_propisa>ZAKON  O TERITORIJALNOJ ORGANIZACIJI REPUBLIKE SRBIJE</ns2:naziv_propisa>
+        <ns2:uvodniDeo>
+            <ns2:glava ns2:id="1">
+                <ns2:podaciGlave>
+                    <ns2:naslovGlave>OSNOVNE ODREDBE</ns2:naslovGlave>
+                    <ns2:broj_glave>1</ns2:broj_glave>
+                </ns2:podaciGlave>
+                <ns2:podnaslovGlave></ns2:podnaslovGlave>
+                <ns2:clan ns2:id="1">
+                    <ns2:podaciClana>
+                        <ns2:naslovClana>Član 1</ns2:naslovClana>
+                        <ns2:brojClana>1</ns2:brojClana>
+                    </ns2:podaciClana>
+                    <ns2:opis>Ovim zakonom određuje se teritorija teritorijalnih jedinica i uređuju druga pitanja od značaja za teritorijalnu organizaciju Republike Srbije.</ns2:opis>
+                </ns2:clan>
+                <ns2:clan ns2:id="2">
+                    <ns2:podaciClana>
+                        <ns2:naslovClana>Član 2</ns2:naslovClana>
+                        <ns2:brojClana>1</ns2:brojClana>
+                    </ns2:podaciClana>
+                    <ns2:opis>Teritorijalnu organizaciju Republike Srbije čine opštine, gradovi i grad Beograd kao teritorijalne jedinice i autonomne pokrajine kao oblik teritorijalne autonomije.</ns2:opis>
+                </ns2:clan>
+            </ns2:glava>
+        </ns2:uvodniDeo>
+        <ns2:glavniDeo>
+            <ns2:glava ns2:id="1">
+                <ns2:podaciGlave>
+                    <ns2:naslovGlave>NASELJENA MESTA</ns2:naslovGlave>
+                    <ns2:broj_glave>1</ns2:broj_glave>
+                </ns2:podaciGlave>
+                <ns2:podnaslovGlave></ns2:podnaslovGlave>
+                <ns2:clan ns2:id="1">
+                    <ns2:podaciClana>
+                        <ns2:naslovClana>Član 3</ns2:naslovClana>
+                        <ns2:brojClana>1</ns2:brojClana>
+                    </ns2:podaciClana>
+                    <ns2:opis>Naseljeno mesto je deo teritorije opštine koje ima izgrađene objekte za stanovanje i privređivanje, osnovnu komunalnu infrastrukturu i druge objekte za zadovoljavanje potreba stanovnika koji su tu stalno nastanjeni.</ns2:opis>
+                </ns2:clan>
+            </ns2:glava>
+        </ns2:glavniDeo>
+        <ns2:zavrsniDeo>
+            <ns2:glava ns2:id="1">
+                <ns2:podaciGlave>
+                    <ns2:naslovGlave></ns2:naslovGlave>
+                    <ns2:broj_glave>1</ns2:broj_glave>
+                </ns2:podaciGlave>
+                <ns2:podnaslovGlave></ns2:podnaslovGlave>
+                <ns2:clan ns2:id="1">
+                    <ns2:podaciClana>
+                        <ns2:naslovClana></ns2:naslovClana>
+                        <ns2:brojClana>1</ns2:brojClana>
+                    </ns2:podaciClana>
+                    <ns2:opis></ns2:opis>
+                </ns2:clan>
+            </ns2:glava>
+            <ns2:potpis_presednika></ns2:potpis_presednika>
+        </ns2:zavrsniDeo>
+        <ns2:dopunaZakona>
+            <ns2:glava ns2:id="1">
+                <ns2:podaciGlave>
+                    <ns2:naslovGlave>OPŠTINE</ns2:naslovGlave>
+                    <ns2:broj_glave>1</ns2:broj_glave>
+                </ns2:podaciGlave>
+                <ns2:podnaslovGlave></ns2:podnaslovGlave>
+                <ns2:clan ns2:id="1">
+                    <ns2:podaciClana>
+                        <ns2:naslovClana>Član 13</ns2:naslovClana>
+                        <ns2:brojClana>1</ns2:brojClana>
+                    </ns2:podaciClana>
+                    <ns2:opis>Predlog zakona kojim se predlaže osnivanje, ukidanje ili promena teritorije opštine koji podnese narodni poslanik, skupština autonomne pokrajine ili najmanje 30.000 birača, mora kao prilog sadržati analizu iz člana 12. stav 2. ovog zakona.
+
+Pre razmatranja predloga zakona iz stava 1. ovog člana, kao i predloga zakona koji utvrdi Vlada, Narodna skupština raspisuje savetodavni referendum.
+
+Narodna skupština prilikom odlučivanja o predlogu zakona iz stava 2. ovog člana, vodi računa o rezultatima sprovedenog referenduma.</ns2:opis>
+                </ns2:clan>
+            </ns2:glava>
+        </ns2:dopunaZakona>
+    </ns2:propisi>
+</ns2:dokument>
