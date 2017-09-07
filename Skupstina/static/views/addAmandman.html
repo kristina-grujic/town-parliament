@@ -1,0 +1,143 @@
+<div id="page-content">
+
+
+	<div class="c-content-box" style="width: 130%">
+		<div class="page-content-inner">
+			<div class="vc_row wpb_row vc_row-fluid">
+				<div class="wpb_column vc_column_container vc_col-sm-12">
+					<div class="vc_column-inner ">
+						<div class="wpb_wrapper">
+							<div class="c-content-box m-forced" ng-controller="AddAmandmanCtrl">
+								<h2>Dopuna akta (" {{dokument.naslov}} ")</h2>
+
+								<form >
+									<fieldset class="bbp-form">
+
+										<div class="bbp-username">
+
+											<div style="text-align: center;font-size: 34px; color: #565656; background-color: #f0f0f0;">
+												<p id="user_login">{{dokument.naslov}}</p>
+											</div>
+										</div>
+
+										<div class="bbp-username" style="margin: 2% 0 2% 0">
+											<label for="user_login">Sluzbeni list: </label>
+
+											<div style="border-top: 1px solid #555; height: 65px; padding: 1% 0 1% 3.9%">
+
+												<div style="float: left; width: 23%; height: 67px; margin: 0 1% 0 0;">
+													Broj lista:
+													<div style="float: left; text-align: center; font-size: 16px; color: #565656; background-color: #f0f0f0; width: 100%; height: 43px;  padding: 5% 0 0 0">
+														<p id="user_login">{{dokument.sluzbeniList.broj_lista}}</p>
+													</div>
+												</div>
+
+												<div style="float: left; width: 23%; height: 67px; margin: 0 1% 0 0;">
+													Cena:
+													<div style="float: left; text-align: center; font-size: 16px; color: #565656; background-color: #f0f0f0; width: 100%; height: 43px;  padding: 5% 0 0 0">
+														<p id="user_login">{{dokument.sluzbeniList.cena}}</p>
+													</div>
+												</div>
+
+												<div style="float: left; width: 23%; height: 67px; margin: 0 1% 0 0;">
+													Mesto:
+													<div style="float: left; text-align: center; font-size: 16px; color: #565656; background-color: #f0f0f0; width: 100%; height: 43px;  padding: 5% 0 0 0">
+														<p id="user_login">{{dokument.sluzbeniList.mestoDatum.mesto}}</p>
+													</div>
+												</div>
+
+												<div style="float: left; width: 23%; height: 67px; margin: 0 1% 0 0;">
+													Datum:
+													<div style="float: left; text-align: center; font-size: 16px; color: #565656; background-color: #f0f0f0; width: 100%; height: 43px;  padding: 5% 0 0 0">
+														<p id="user_login">{{dokument.sluzbeniList.mestoDatum.datum}}</p>
+													</div>
+												</div>
+
+
+
+											</div>
+
+										</div>
+										<div id="choicesDisplay"></div>
+										<fieldset data-ng-repeat="propis in dokument.propisi">
+											<div class="bbp-username"  >
+												<label for="user_login">Propis({{$index+1}}): </label>
+												<div style="float:left; border-top: 1px solid #555; border-bottom: 1px solid #555; width: 99%; padding: 1% 0 1% 3.9%">
+
+													<div style="float: left; width: 100%; height: 67px; margin: 0 1% 0 0;">
+														Naziv propisa:
+														<div style="float: left; text-align: center; font-size: 16px; color: #565656; background-color: #f0f0f0; width: 100%; height: 43px;  padding: 1% 0 0 0">
+															<p id="user_login">{{propis.naziv_propisa}}</p>
+														</div>
+													</div>
+
+													<div style="float: left; width: 100%; height: 67px; margin: 0 1% 0 0;">
+														Preambula:
+														<div style="float: left; text-align: center; font-size: 16px; color: #565656; background-color: #f0f0f0; width: 100%; height: 43px;  padding: 1% 0 0 0">
+															<p id="user_login">{{propis.preambula}}</p>
+														</div>
+													</div>
+
+
+
+
+													<div style=" float: left; margin: 5% 0 0 0; width: 100%" data-ng-repeat="glavni in propis.zavrsniDeo">
+
+														<label for="user_login" style="text-align: center;">Amandman: </label>
+
+														<div style="border: 1px solid #555; width: 99%; padding: 1% 0 1% 2%">
+
+															<fieldset data-ng-repeat="gl in amandman.dopunaZakonaAmandmana.glava">
+
+																<label for="user_login" style="margin-top: 2%; text-align: center;" >Glava: </label>
+																<div style="border-bottom: 1px solid #555; border-top: 1px solid #555; width: 98%; margin: 1% 1% 0 0">
+																	<input type="text" ng-model="gl.podaciGlave.naslovGlave" style="width: 100%; margin-top: 1%" placeholder="Naslov glave" size="20" />
+																	<input type="text" name="log" ng-model="gl.podnaslovGlave" style="width: 100%;" placeholder="Podnaslov glave" size="20" />
+
+
+																	<div style="width: 95%; margin: 1% 0 1% 3%">
+
+																		<fieldset data-ng-repeat="cl in gl.clan">
+																			<label for="user_login" style="margin-top: 1%; ">Clan: </label>
+																			<div style="border: 1px solid #555; padding: 1% 0 0 1%">
+																				<input type="text" name="log" ng-model="cl.podaciClana.naslovClana" style="width: 100%" placeholder="Naslov Clana" size="20" />
+																				<textarea  style="width: 100%; margin: 1% 0 0 0" ng-model="cl.opis" name="opis" placeholder="Opis"></textarea>
+																			</div>
+
+																			<button ng-click="addNewClan(gl.id, cl.id)"  style=" margin: 2% 0 2% 0">Novi clan</button>
+																		</fieldset>
+
+
+																	</div>
+
+																</div>
+
+																<button ng-click="addNewGlava(gl.id)"  style=" margin: 2% 0 2% 0">Nova glava</button>
+
+															</fieldset>
+														</div>
+
+													</div>
+
+												</div>
+											</div>
+										</fieldset>
+										<button ng-click="addNewPropis(propis.id)"  style=" margin: 2% 0 2% 0">Novi propis</button>
+
+
+										<div class="bbp-submit-wrapper">
+
+											<button type="submit" tabindex="104" name="user-submit" class="button submit user-submit" ng-click="addAmandman()">Sacuvaj</button>
+
+										</div>
+									</fieldset>
+								</form>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
