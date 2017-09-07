@@ -155,6 +155,56 @@ public class ActController {
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/accept/{docId}", method = RequestMethod.GET)
+	public ResponseEntity<MesagesDTO> acceptAct(@PathVariable String docId)
+			throws JAXBException, IOException, SAXException {
+
+		MesagesDTO mesagesDTO = new MesagesDTO();
+		String doc = "/acts/decisions/" + docId + ".xml";
+		DocumentMetadataHandle metadata = new DocumentMetadataHandle();
+		xmlMenager.readMetadata(doc, metadata);
+
+		DocumentCollections collections = metadata.getCollections();
+		collections.remove("/parliament/acts/proposed");
+		collections.add("/parliament/acts/accepted");
+		xmlMenager.writeMetadata(doc, metadata);
+		mesagesDTO.setVote(true);
+		return new ResponseEntity<MesagesDTO>(mesagesDTO, HttpStatus.OK);
+	}
+
+	/**
+	 * Search for name file (xxx.xml)
+	 *
+	 * @param docId
+	 * @return
+	 * @throws JAXBException
+	 * @throws IOException
+	 * @throws SAXException
+	 */
+	@RequestMapping(value = "/find/{docId}", method = RequestMethod.GET)
+	public ResponseEntity<Dokument> findByIdAct(@PathVariable String docId)
+			throws JAXBException, IOException, SAXException {
+
+		Dokument dokument = null;
+
+		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+		Schema schema = schemaFactory.newSchema(new File(XML_FILE + "skupstina.xsd"));
+
+		unmarshaller.setSchema(schema);
+
+		DOMHandle content = new DOMHandle();
+
+		String doc = "/acts/decisions/" + docId + ".xml";
+
+		xmlMenager.read(doc, content);
+
+		Document docc = content.get();
+		unmarshaller.setEventHandler(new MyValidationEventHandler());
+		dokument = (Dokument) unmarshaller.unmarshal(docc);
+
+		return new ResponseEntity<Dokument>(dokument, HttpStatus.OK);
+	}
+
 	/*
 	 * Potrebno je proslediti jedan od dva parametra 1. proposed 2. accepted
 	 */
@@ -186,6 +236,39 @@ public class ActController {
 		return new ResponseEntity<List<SearchDTO>>(searchDTO, HttpStatus.OK);
 	}
 
+	@RequestMapping(value = "/delete/{docId}", method = RequestMethod.DELETE)
+	public static ResponseEntity<String> deleteCollection(@PathVariable String docId)
+			throws JAXBException, IOException, SAXException {
+
+		GenericDocumentManager docMgr = databaseClient.newDocumentManager();
+		String collId = "/acts/decisions/" + docId + ".xml";
+		docMgr.delete(collId);
+
+		return new ResponseEntity<String>(HttpStatus.OK);
+	}
+
+	/**
+	 * Ispis svih galsova za presednika na osnovu kog on odlucuje da li se akt usvaja ili ne usvaja
+	 * @param principal
+	 * @return
+	 */
+	@RequestMapping(value = "/adopt/proposal/{id}", method = RequestMethod.GET)
+	public ResponseEntity<List<VoteDTO>> getAdopt(Principal principal, @PathVariable String id) {
+
+
+		List<Voting> Voting = votingRepository.findByName(id);
+
+		List<VoteDTO> voteDTO = new ArrayList<>();
+		for(Voting v : Voting) {
+
+
+			voteDTO.add(new VoteDTO(v));
+		}
+
+		return new ResponseEntity<>(voteDTO, HttpStatus.OK);
+	}
+
+
 
 	public String getDocumentTitle(String docId) throws JAXBException {
 
@@ -204,3 +287,47 @@ public class ActController {
 
 		return title;
 	}
+
+	@RequestMapping(value = "/convert/{docId}/{typeId}", method = RequestMethod.GET)
+	public void convert(HttpServletResponse response, @PathVariable String docId, @PathVariable String typeId)
+			throws JAXBException, IOException, SAXException, DocumentException, TransformerException {
+
+		String doc = "/acts/decisions/" + docId + ".xml";
+		Dokument dokument = null;
+
+		DOMHandle content = new DOMHandle();
+		xmlMenager.read(doc, content);
+
+		Document docc = content.get();
+
+		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+		Schema schema = schemaFactory.newSchema(new File(XML_FILE + "skupstina.xsd"));
+
+		unmarshaller.setSchema(schema);
+		dokument = (Dokument) unmarshaller.unmarshal(docc);
+
+		String outputFileName = "data/" + docId + ".html";
+		OutputStream htmlFile = new FileOutputStream(outputFileName);
+
+		TransformerFactory tf = TransformerFactory.newInstance();
+		StreamSource xslt = new StreamSource("data/act.xsl");
+		Transformer transformer = tf.newTransformer(xslt);
+
+		JAXBContext jc = JAXBContext.newInstance(Dokument.class);
+		JAXBSource source = new JAXBSource(jc, dokument);
+
+		transformer.transform(source, new StreamResult(htmlFile));
+
+		File file1 = new File(XML_FILE + docId + ".html");
+		String mimeType = URLConnection.guessContentTypeFromName(file1.getName());
+
+		response.setContentType(mimeType);
+		response.setHeader("Content-Disposition", String.format("inline; filename=\"" + file1.getName() + "\""));
+		response.setContentLength((int) file1.length());
+		InputStream inputStream = new BufferedInputStream(new FileInputStream(file1));
+		FileCopyUtils.copy(inputStream, response.getOutputStream());
+
+		file1.delete();
+	}
+
+}
