@@ -34,9 +34,19 @@ angular
 	            controller: 'ActCrtl',
 	            controllerAs: 'acceptAct'
 	        })
+	        .when('/amandman/:accept', {
+	            templateUrl: 'views/listAmandman.html',
+	            controller: 'AmandmanCrtl',
+	            controllerAs: 'acceptAct'
+	        })
 	        .when('/add/new/act', {
 	            templateUrl: 'views/add.html',
 	            controller: 'AddActCtrl',
+	            controllerAs: 'addAct'
+	        })
+	        .when('/complement/amandman/:id', {
+	            templateUrl: 'views/addAmandman.html',
+	            controller: 'AddAmandmanCtrl',
 	            controllerAs: 'addAct'
 	        })
 	        .when('/acts/read/proposed/:id', {

@@ -163,6 +163,8 @@
 								<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-808"><a href="#/">Pocetna</a></li>
 								<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-808"><a href="#/acts/accepted">Usvojeni akti</a></li>
 								<li ng-if="isLoggedIn()" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-808"><a href="#/acts/proposed">Predlozeni akti</a></li>
+								<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-808"><a href="#/amandman/accepted">Usvojeni amandmani</a></li>
+								<li ng-if="isLoggedIn()" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-808"><a href="#/amandman/proposed">Predlozeni amandmani</a></li>
 								<li ng-if="isLoggedIn()" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-808"><a href="#/add/new/act">Dodati novi akt</a></li>
 								<li ng-if="isLoggedIn() && getCurrentUserRole()&&getCurrentUserRole()!='ALDERMAN'" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-808"><a href="#/add/new/minister">Dodati poslanika</a></li>
 								</ul>
@@ -194,12 +196,14 @@
 
 		<!--  JS -->
 		<script src="scripts/app.js"></script>
+		<script src="scripts/act/act-ctrl.js"></script>
 		<script src="scripts/act/act-resource.js"></script>
 		<script src="scripts/act/act-resourceOne.js"></script>
 		<script src="scripts/users/user-ctrl.js"></script>
 		<script src="scripts/users/user-add-ctrl.js"></script>
 		<script src="scripts/users/authentication.js"></script>
 		<script src="scripts/users/auth-service.js"></script>
+		<script src="scripts/act/amandma-ctrl.js"></script>
 		<script src="scripts/vote/vote-ctrl.js"></script>
 		<script src="scripts/vote/vote-resource.js"></script>
 		<script src="scripts/search/search-resource.js"></script>
