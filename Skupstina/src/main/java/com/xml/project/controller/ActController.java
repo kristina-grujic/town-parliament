@@ -330,4 +330,80 @@ public class ActController {
 		file1.delete();
 	}
 
+	@RequestMapping(value = "/download/pdf/{docId}", method = RequestMethod.GET)
+	public void downloadPDF(HttpServletResponse response, @PathVariable String docId)
+			throws JAXBException, IOException, SAXException, DocumentException, TransformerException {
+
+		String doc = "/acts/decisions/" + docId + ".xml";
+		Dokument dokument = null;
+
+		DOMHandle content = new DOMHandle();
+		xmlMenager.read(doc, content);
+
+		Document docc = content.get();
+
+		SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+		Schema schema = schemaFactory.newSchema(new File(XML_FILE + "skupstina.xsd"));
+
+		unmarshaller.setSchema(schema);
+		dokument = (Dokument) unmarshaller.unmarshal(docc);
+
+		String outputFileName = "data/" + docId + ".html";
+		OutputStream htmlFile = new FileOutputStream(outputFileName);
+
+		TransformerFactory tf = TransformerFactory.newInstance();
+		StreamSource xslt = new StreamSource("data/pdfAct.xsl");
+		Transformer transformer = tf.newTransformer(xslt);
+
+		JAXBContext jc = JAXBContext.newInstance(Dokument.class);
+		JAXBSource source = new JAXBSource(jc, dokument);
+
+		transformer.transform(source, new StreamResult(htmlFile));
+
+		// PDF FILE
+		com.itextpdf.text.Document myDoc = new com.itextpdf.text.Document();
+		PdfWriter writer = PdfWriter.getInstance(myDoc, new FileOutputStream(XML_FILE + docId + ".pdf"));
+
+		myDoc.open();
+
+		XMLWorkerHelper.getInstance().parseXHtml(writer, myDoc, new FileInputStream(XML_FILE + docId + ".html"));
+		myDoc.close();
+
+		File file1 = new File(XML_FILE + docId + ".pdf");
+		String mimeType = URLConnection.guessContentTypeFromName(file1.getName());
+		// END OF PDF FILE
+
+		response.setContentType(mimeType);
+		response.setHeader("Content-Disposition", String.format("inline; filename=\"" + file1.getName() + "\""));
+		response.setContentLength((int) file1.length());
+		InputStream inputStream = new BufferedInputStream(new FileInputStream(file1));
+		FileCopyUtils.copy(inputStream, response.getOutputStream());
+
+		// delete pdf and html file
+		file1.delete();
+		file1 = new File(XML_FILE + docId + ".html");
+		file1.delete();
+
+	}
+
+	@RequestMapping(value="download/rdf/{docId}", method=RequestMethod.GET)
+	public void downloadRDF(HttpServletResponse response, @PathVariable String docId) throws JAXBException, SAXException, TransformerException, IOException
+	{
+		Helper helper = new Helper();
+		helper.generateRDF(docId);
+
+		//download rdf file
+		File rdfFile = new File(XML_FILE + docId + ".rdf");
+		String mimeType = URLConnection.guessContentTypeFromName(rdfFile.getName());
+
+		response.setContentType(mimeType);
+		response.setHeader("Content-Disposition", String.format("inline; filename=\"" + rdfFile.getName() + "\""));
+		response.setContentLength((int) rdfFile.length());
+		InputStream inputStream = new BufferedInputStream(new FileInputStream(rdfFile));
+		FileCopyUtils.copy(inputStream, response.getOutputStream());
+
+		//delete file
+		rdfFile.delete();
+
+	}
 }
