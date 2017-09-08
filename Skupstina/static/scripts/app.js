@@ -59,6 +59,16 @@ angular
 	            controller: 'ReadCrtl',
 	            controllerAs: 'readCtrl'
 	        })
+	        .when('/amandman/read/proposed/:id', {
+	            templateUrl: 'views/readAmandman.html',
+	            controller: 'ReadAmandanCrtl',
+	            controllerAs: 'readCtrl'
+	        })
+	        .when('/amandman/read/accepted/:id', {
+	            templateUrl: 'views/readAcceptAmandman.html',
+	            controller: 'ReadAmandanCrtl',
+	            controllerAs: 'readCtrl'
+	        })
 	        .when('/vote/:tip/:name/:id', {
 	            templateUrl: 'views/vote.html',
 	            controller: 'VoteCrtl',
