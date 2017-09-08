@@ -1,0 +1,158 @@
+<!-- PAGE CONTENT : begin -->
+<div id="page-content">
+
+	<div class="c-content-box" style="width: 130%">
+		<div class="page-content-inner">
+			<div class="vc_row wpb_row vc_row-fluid">
+				<div class="wpb_column vc_column_container vc_col-sm-12">
+					<div class="vc_column-inner ">
+						<div class="wpb_wrapper">
+							<div class="wpb_text_column wpb_content_element ">
+								<div id="page-header">
+
+									<!-- PAGE TITLE : begin -->
+									<div class="page-title"><h1>Prikaz amandmana</h1></div>
+									<!-- PAGE TITLE : end -->
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="vc_row wpb_row vc_row-fluid">
+				<div class="wpb_column vc_column_container vc_col-sm-12">
+					<div class="vc_column-inner ">
+						<div class="wpb_wrapper">
+							<div class="c-content-box m-forced" ng-controller="ReadAmandanCrtl">
+
+
+
+									<fieldset class="bbp-form">
+
+										<div class="bbp-username">
+
+											<div style="text-align: center;font-size: 34px; color: #565656; background-color: #f0f0f0;">
+												<p id="user_login">{{list.naslovAkta}}</p>
+											</div>
+
+										</div>
+
+										<div class="bbp-username" style="margin: 2% 0 2% 0">
+											<label for="user_login">Sluzbeni list: </label>
+											<div style="border-top: 1px solid #555; height: 65px; padding: 1% 0 1% 3.9%">
+
+												<div style="float: left; width: 23%; height: 67px; margin: 0 1% 0 0;">
+													Broj lista:
+													<div style="float: left; text-align: center; font-size: 16px; color: #565656; background-color: #f0f0f0; width: 100%; height: 43px;  padding: 5% 0 0 0">
+														<p id="user_login">{{list.sluzbeniListAmandmana.brojListaAkta}}</p>
+													</div>
+												</div>
+
+												<div style="float: left; width: 23%; height: 67px; margin: 0 1% 0 0;">
+													Naslov dopune:
+													<div style="float: left; text-align: center; font-size: 16px; color: #565656; background-color: #f0f0f0; width: 100%; height: 43px;  padding: 5% 0 0 0">
+														<p id="user_login">{{list.sluzbeniListAmandmana.idAkta}}</p>
+													</div>
+												</div>
+
+												<div style="float: left; width: 23%; height: 67px; margin: 0 1% 0 0;">
+													Mesto:
+													<div style="float: left; text-align: center; font-size: 16px; color: #565656; background-color: #f0f0f0; width: 100%; height: 43px;  padding: 5% 0 0 0">
+														<p id="user_login">{{list.sluzbeniListAmandmana.mestoDatum.mesto}}</p>
+													</div>
+												</div>
+
+												<div style="float: left; width: 23%; height: 67px; margin: 0 1% 0 0;">
+													Datum:
+													<div style="float: left; text-align: center; font-size: 16px; color: #565656; background-color: #f0f0f0; width: 100%; height: 43px;  padding: 5% 0 0 0">
+														<p id="user_login">{{list.sluzbeniListAmandmana.mestoDatum.datum}}</p>
+													</div>
+												</div>
+
+
+											</div>
+										</div>
+										<div id="choicesDisplay"></div>
+
+											<div class="bbp-username" style="width:100%">
+
+												<div style="border-top: 1px solid #555; border-bottom: 1px solid #555; width: 98%; padding: 1% 0 1% 3.9%">
+
+
+
+													<!-- pocetak uvodnog dela -->
+													<div style="margin: 2% 0 0 0; width: 100%" >
+
+														<label for="user_login" style="text-align: center;">Amandman: </label>
+
+														<div style="border: 1px solid #555; width: 98%; padding: 1% 0 1% 2%">
+
+															<fieldset data-ng-repeat="gl in list.dopunaZakonaAmandmana.glava">
+
+																<label for="user_login" style="margin-top: 2%; text-align: center;" >Glava {{$index+1}}: </label>
+																<div style="border-bottom: 1px solid #555; border-top: 1px solid #555; width: 100%; margin: 1% 1% 0 0">
+
+																	<div style="float: left; width: 99%; height: 67px; margin: 0 1% 0 0;">
+																		Naslov glave:
+																		<div style="float: left; text-align: center; font-size: 16px; color: #565656; background-color: #f0f0f0; width: 100%; height: 43px;  padding: 1% 0 0 0">
+																			<p id="user_login">{{gl.podaciGlave.naslovGlave}}</p>
+																		</div>
+																	</div>
+
+																	<div style="float: left; width: 99%; height: 67px; margin: 0 1% 0 0;">
+																		Podnaslov glave:
+																		<div style="float: left; text-align: center; font-size: 16px; color: #565656; background-color: #f0f0f0; width: 100%; height: 43px;  padding: 1% 0 0 0">
+																			<p id="user_login">{{gl.podnaslovGlave}}</p>
+																		</div>
+																	</div>
+
+
+																	<div style="width: 95%; margin: 1% 0 1% 3%">
+
+																		<fieldset data-ng-repeat="cl in gl.clan">
+																			<label for="user_login" style="margin-top: 1%; ">Clan {{$index+1}}: </label>
+																			<div style=" padding: 1% 0 0 1%">
+
+																				<div style="float: left; width: 100%; height: 67px; margin: 0 1% 0 0;">
+																					Naslov clana:
+																					<div style="float: left; text-align: center; font-size: 16px; color: #565656; background-color: #f0f0f0; width: 100%; height: 43px;  padding: 1% 0 0 0">
+																						<p id="user_login">{{cl.podaciClana.naslovClana}}</p>
+																					</div>
+																				</div>
+																				Opis clana:
+																				<textarea style="width: 100%; margin: 1% 0 0 0" ng-model="cl.opis" disabled></textarea>
+																			</div>
+
+
+																		</fieldset>
+
+
+																	</div>
+
+																</div>
+
+
+
+															</fieldset>
+														</div>
+													</div>
+													<!-- Kraj uvodnog dela -->
+
+
+
+												</div>
+											</div>
+
+									</fieldset>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- PAGE CONTENT : end -->
