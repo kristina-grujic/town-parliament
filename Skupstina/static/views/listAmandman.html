@@ -1,0 +1,108 @@
+<div id="page-content">
+	<div class="c-content-box" style="width: 130%">
+		<div class="page-content-inner">
+
+
+			<form class="navbar-search" >
+				<input type="text" placeholder="Search" ng-change="search()" ng-model="keywords" class="form-control">
+			</form>
+
+			<div id="page-header">
+
+				<!-- PAGE TITLE : begin -->
+				<div class="page-title"><h1>Pregled <span ng-if="name == 'accepted'">usvojenih</span><span ng-if="name == 'proposed'">predlozenih</span > amandmana</h1></div>
+				<!-- PAGE TITLE : end -->
+
+			</div>
+
+			<!-- PAGE CONTENT : begin -->
+			<div id="page-content" ng-show="liste == ''">
+
+
+				<div class="c-content-box">
+					<div class="page-content-inner">
+						<div ng-if="list.length===0">
+							<p>Nema rezultata</p>
+						</div>
+						<table>
+							<tbody>
+								<style>
+								td:first-child {
+								    background-color: #ffff;
+								}
+								</style>
+								<tr ng-repeat="l in list">
+									<td >
+
+										<span style="color: #555;">
+											<a ng-if="name == 'accepted'" style="color: #555;" href="#/amandman/read/accepted/{{l.docUrl}}">{{l.docTitle}}</a>
+											<a ng-if="name == 'proposed'" style="color: #555;" href="#/amandman/read/proposed/{{l.docUrl}}">{{l.docTitle}}</a>
+										</span>
+										<span style="float: right; color: #DDDDD;">
+											<a href style="color: #888;" ng-click="converte(l.docUrl, 'PDF')">PDF</a> |
+											<a href style="color: #888;" ng-click="converte(l.docUrl, 'HTML')">HTML</a> |
+											<a href style="color: #888;" ng-click="converte(l.docUrl, 'RDF')">RDF</a>
+											<span ng-if="name == 'proposed'">|</span>
+											<a  ng-if="name == 'proposed'" href="#/vote/amandman/{{l.docTitle}}/{{l.docUrl}}" style="color: #888;"> GLASANJE</a>
+										</span>
+									</td>
+								</tr>
+
+
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+
+			</div>
+			<!-- PAGE CONTENT : end -->
+
+
+
+			<!-- PAGE CONTENT : begin -->
+			<div id="page-content" ng-show="liste != ''">
+
+
+				<div class="c-content-box">
+					<div class="page-content-inner">
+
+						<table>
+							<tbody>
+								<style>
+								td:first-child {
+								    background-color: #ffff;
+								}
+								</style>
+								<tr ng-repeat="l in nasao">
+									<td >
+
+										<span style="color: #555;">
+											<a ng-if="name == 'accepted'" style="color: #555;" href="#/amandman/read/accepted/{{l.docUrl}}">{{l.docTitle}}</a>
+											<a ng-if="name == 'proposed'" style="color: #555;" href="#/amandman/read/proposed/{{l.docUrl}}">{{l.docTitle}}</a>
+										</span>
+										<span style="float: right; color: #DDDDD;">
+											<a href style="color: #888;" ng-click="converte(l.docUrl, 'PDF')">PDF</a> |
+											<a href style="color: #888;" ng-click="converte(l.docUrl, 'HTML')">HTML</a> |
+											<a href style="color: #888;" ng-click="converte(l.docUrl, 'RDF')">RDF</a>
+											<span ng-if="name == 'proposed'">|</span>
+											<a  ng-if="name == 'proposed'" href="#/vote/amandman/{{l.docTitle}}/{{l.docUrl}}" style="color: #888;"> GLASANJE</a>
+										</span>
+									</td>
+								</tr>
+
+
+
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+
+
+			</div>
+			<!-- PAGE CONTENT : end -->
+		</div>
+	</div>
+</div>
